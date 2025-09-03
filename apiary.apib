@@ -54,7 +54,7 @@ Model Header containing AccessToken
 |ValueDate|Value Date|`datetime`||||
 |OrderNumber|Order Number|`string`|255|||
 |IsProcessed|Is Processed|`boolean`||||
-|Legs|see <b><a href="/#reference/data-object-definitions/invoice-leg/invoice-leg">Invoice Legs</a></b> object|[array] of `object`||||
+|InvoiceLegs|see <b><a href="/#reference/data-object-definitions/invoice-leg/invoice-leg">Invoice Legs</a></b> object|[array] of `object`||||
 
 
 + Request
@@ -414,7 +414,7 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + DocumentDate: `2025-07-14T00:00:00Z` (string)
 + ValueDate: `2025-08-14T00:00:00Z` (string)
 + OrderNumber: 'Order 1 (string)
-+ Legs (required, array [InvoiceReadLeg1, InvoiceReadLeg2])
++ InvoiceLegs (required, array [InvoiceReadLeg1, InvoiceReadLeg2])
 
 ## InvoiceUpdateBody (object)
 + InvoiceId: 1 (required, number)
