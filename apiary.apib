@@ -46,8 +46,15 @@ Model Header containing AccessToken
 
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
-|InvoiceHeader|see <b><a href="/#reference/data-object-definitions/invoiceheader/invoice-header">Invoice Header</a></b> object|`object`||||
-|InvoiceLegs|see <b><a href="/#reference/data-object-definitions/invoice-leg/invoice-leg">Invoice Legs</a></b> object|[array] of `object`||||
+|InvoiceId|Invoice Id|`number`||||
+|AccountCode|Account Code|`string`|10|||
+|ClientReference|Client Reference|`string`|255|||
+|CurrencyCode|Currency Code|`string`|3|||
+|DocumentDate|Document Date|`datetime`||||
+|ValueDate|Value Date|`datetime`||||
+|OrderNumber|Order Number|`string`|255|||
+|IsProcessed|Is Processed|`boolean`||||
+|Legs|see <b><a href="/#reference/data-object-definitions/invoice-leg/invoice-leg">Invoice Legs</a></b> object|[array] of `object`||||
 
 
 + Request
@@ -66,7 +73,7 @@ Model Header containing AccessToken
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes 
-        + Data (array [InvoiceUpdateBody])
+        + Data (array [InvoiceReadBody])
         + Pagination (Pagination)
         + Response (200 SuccessResponse)
     
@@ -86,7 +93,12 @@ Model Header containing AccessToken
 
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
-|InvoiceHeader|see <b><a href="/#reference/data-object-definitions/invoiceheader/invoice-header-create">Invoice Header</a></b> object|`object`|||Required|
+|AccountCode|Account Code|`string`|10||Required|
+|ClientReference|Client Reference|`string`|255||Required|
+|CurrencyCode|Currency Code|`string`|3||Required|
+|DocumentDate|Document Date|`datetime`|||Required|
+|ValueDate|Value Date|`datetime`|||Required|
+|OrderNumber|Order Number|`string`|255|||
 |InvoiceLegs|see <b><a href="/#reference/data-object-definitions/invoice-leg/invoice-leg-for-create">Invoice Legs</a></b> object|[array] of `object`|||Required|
 
 <hr />
@@ -127,7 +139,14 @@ Model Header containing AccessToken
 
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
-|InvoiceHeader|see <b><a href="/#reference/data-object-definitions/invoiceheader/invoice-header">Invoice Header</a></b> object|`object`|||Required|
+|InvoiceId|Invoice Id|`number`|||Required|
+|AccountCode|Account Code|`string`|10||Required|
+|ClientReference|Client Reference|`string`|255||Required|
+|CurrencyCode|Currency Code|`string`|3||Required|
+|DocumentDate|Document Date|`datetime`|||Required|
+|ValueDate|Value Date|`datetime`|||Required|
+|OrderNumber|Order Number|`string`|255|||
+|IsProcessed|Is Processed|`boolean`||||
 |InvoiceLegs|see <b><a href="/#reference/data-object-definitions/invoice-leg/invoice-leg">Invoice Legs</a></b> object|[array] of `object`|||Required|
 
 <hr />
@@ -208,39 +227,6 @@ None.
 
 # Group Data Object Definitions
 List of re-usable Data Objects referenced as `object` types. Not that these endpoints are not accessable and only here for reference purposes.
-
-## InvoiceHeader [/InvoiceHeader]
-A multipurpose object which can be used by several endpoints and with multiple source tables depending on context. The object described below is generic. 
-
-### InvoiceHeader [GET]
-<br /><br />
-<strong>Invoice Header object for Create.</strong>
-
-|Property|Description|Type|Max Length|Notes|Constraint|
-|--------|-----------|----|----------|-----|----------|
-|AccountCode|Account Code|`string`|10||Required|
-|ClientReference|Client Reference|`string`|255||Required|
-|DocumentDate|Document Date|`datetime`|||Required|
-|ValueDate|Value Date|`datetime`|||Required|
-|CurrencyCode|Currency Code|`string`|3||Required|
-|OrderNumber|Order Number|`string`|255|||
-
-<br /><br />
-<strong>Invoice Header object for Update and Read.</strong>
-
-|Property|Description|Type|Max Length|Notes|Constraint|
-|--------|-----------|----|----------|-----|----------|
-|InvoiceId|Invoice Id|`number`|||Required|
-|ClientReference|Client Reference|`string`|255||Required|
-|AccountCode|Account Code|`string`|10||Required|
-|DocumentDate|Document Date|`datetime`|||Required|
-|ValueDate|Value Date|`datetime`|||Required|
-|CurrencyCode|Currency Code|`string`|3||Required|
-|OrderNumber|Order Number|`string`|255|||
-|IsProcessed|Is Processed|`boolean`||||
-
-+ Response 200 (application/json; charset=utf-8)
-+ Attributes (InvoiceHeaderUpdate)
 
 ## Invoice Leg [/InvoiceLeg]
 A multipurpose object which can be used by several endpoints and with multiple source tables depending on context. The object described below is generic. 
@@ -381,28 +367,16 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImRlZXBhayIsInN1YiI6ImRlZXBhayIsInJvbGUiOlsiNzk5YjhhNDEtYWI0ZS00MTBhLWI5MTktYzU3ZWFlMmFlMDI5IiwiZGVlcGFrIiwiQVNQLk5FVCBJZGVudGl0eSIsIjViNDE4ODE2LTI3ZjQtNGRlOC1iNmMyLTJlZTcxNjI3ZmJmYyIsIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMjciLCJhdWQiOiI4MjkzNjk0MjJmNzA0NTIzODUxZDk4NTU2YjZkNTQyYiIsImV4cCI6MTQ1OTQzMjk0MSwibmJmIjoxNDU5NDMxMTQxfQ.JgPGxt0Ok5baKx0YMXlO6D9kUYrCWM-Kma9b9iMW8tg 
 
 ## InvoiceCreateBody (object)
-+ InvoiceHeader (required, InvoiceHeaderCreate)
++ AccountCode: `ABCDEFG.P` (required, string)
++ ClientReference: '5879101647' (required, string)
++ CurrencyCode: EUR (required, string)
++ DocumentDate: `2025-07-14T00:00:00Z` (required, string)
++ ValueDate: `2025-08-14T00:00:00Z` (required, string)
++ OrderNumber: 'Order 1 (string)
 + InvoiceLegs (required, array [InvoiceLeg1Create, InvoiceLeg2Create])
 
 ## InvoiceIdResponse (object)
 + InvoiceId: 1 (number)
-
-## InvoiceHeaderCreate (object)
-+ ClientReference: '5879101647' (required, string)
-+ AccountCode: `ABCDEFG.P` (required, string)
-+ DocumentDate: `2025-07-14T00:00:00Z` (required, string)
-+ ValueDate: `2025-08-14T00:00:00Z` (required, string)
-+ CurrencyCode: EUR (required, string)
-+ OrderNumber: 'Order 1 (string)
-
-## InvoiceHeaderUpdate (object)
-+ InvoiceId: 1 (required, number)
-+ ClientReference: '5879101647' (required, string)
-+ AccountCode: `ABCDEFG.P` (required, string)
-+ DocumentDate: `2025-07-14T00:00:00Z` (required, string)
-+ ValueDate: `2025-08-14T00:00:00Z` (required, string)
-+ CurrencyCode: EUR (required, string)
-+ OrderNumber: 'Order 1 (string)
 
 ## InvoiceLeg1Create (object)
 + Quantity: 440.00 (required, number)
@@ -418,7 +392,6 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + IBAN: UKBMGB22 (string)
 + BIC: HBUKGB4B (string)
 
-
 ## InvoiceLeg2Create (object)
 + Quantity: 200.00 (required, number)
 + WeightCode: MT (required, string)
@@ -433,8 +406,24 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + IBAN: UKBMGB22 (string)
 + BIC: HBUKGB4B (string)
 
+## InvoiceReadBody (object)
++ InvoiceId: 1 (number)
++ AccountCode: `ABCDEFG.P` (string)
++ ClientReference: '5879101647' (string)
++ CurrencyCode: EUR (string)
++ DocumentDate: `2025-07-14T00:00:00Z` (string)
++ ValueDate: `2025-08-14T00:00:00Z` (string)
++ OrderNumber: 'Order 1 (string)
++ Legs (required, array [InvoiceUpdateLeg1Create, InvoiceUpdateLeg2Create])
+
 ## InvoiceUpdateBody (object)
-+ InvoiceHeader (required, InvoiceHeaderUpdate)
++ InvoiceId: 1 (required, number)
++ AccountCode: `ABCDEFG.P` (required, string)
++ ClientReference: '5879101647' (required, string)
++ CurrencyCode: EUR (required, string)
++ DocumentDate: `2025-07-14T00:00:00Z` (required, string)
++ ValueDate: `2025-08-14T00:00:00Z` (required, string)
++ OrderNumber: 'Order 1 (string)
 + InvoiceLegs (required, array [InvoiceUpdateLeg1Create, InvoiceUpdateLeg2Create])
 
 ## InvoiceUpdateLeg1Create (object)
