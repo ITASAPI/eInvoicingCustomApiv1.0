@@ -261,12 +261,12 @@ None.
 # Group Data Object Definitions
 List of re-usable Data Objects referenced as `object` types. Not that these endpoints are not accessable and only here for reference purposes.
 
-## Invoice Leg [/InvoiceLeg]
+## Invoice Record Leg [/InvoiceLeg]
 A multipurpose object which can be used by several endpoints and with multiple source tables depending on context. The object described below is generic. 
 
-### InvoiceLeg [GET]
+### InvoiceRecordLeg [GET]
 <br /><br />
-<strong>Invoice Leg object for Create.</strong>
+<strong>Invoice Record Leg object for Create.</strong>
 
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
@@ -288,7 +288,7 @@ A multipurpose object which can be used by several endpoints and with multiple s
 
 
 <br /><br />
-<strong>Invoice Leg object for Update and Read.</strong>
+<strong>Invoice Record Leg object for Update and Read.</strong>
 
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
@@ -414,10 +414,10 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + Name: `Coolblue N.V.` (required, string)
 + VatRegistrationNo: NL823619357Z08 (required, string)
 + EInvoiceId: 0478493179 (required, string)
-+ TotalInvoiceAmount: `729.17` (required, number)
-+ TotalInvoiceLinesExVatAmount: `745.91` (required, number)
-+ TotalVatAmount: `16.74` (required, number)
-+ InvoicePayableAmount: `719.27` (required, number)
++ TotalInvoiceAmount: 729.17 (required, number)
++ TotalInvoiceLinesExVatAmount: 745.91 (required, number)
++ TotalVatAmount: 16.74 (required, number)
++ InvoicePayableAmount: 719.27 (required, number)
 + IBAN: UKBMGB22 (required, string)
 + BIC: HBUKGB4B (required, string)
 + OrderNumber: Order 1 (string)
@@ -433,24 +433,34 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + WeightCode: MT (required, string)
 + Value: 22000.00 (required, number)
 + Price: 50.00 (required, number)
++ VatRatePercentage: 21 (required, number)
 + InvoiceLegDescription: SGR 1234 (string)
 + VatRateCode: E (string)
 + RateTypeCode: A (string)
 + PriceTypeCode: PKG (string)
 + PaymentModeCode: I (string)
 + PaymentId: Payment 1 (string)
++ BuyerOrderIdentifier: XX01 (string)
++ StartPeriod: `2025-07-14T00:00:00Z` (string)
++ EndPeriod: `2025-07-28T00:00:00Z` (string)
++ FreeFormatNote: Notes section (string)
 
 ## InvoiceLeg2Create (object)
 + Quantity: 200.00 (required, number)
 + WeightCode: MT (required, string)
 + Value: 12000.00 (required, number)
 + Price: 60.00 (required, number)
++ VatRatePercentage: 21 (required, number)
 + InvoiceLegDescription: MLS 8523 (string)
 + VatRateCode: E (string)
 + RateTypeCode: A (string)
 + PriceTypeCode: PKG (string)
 + PaymentModeCode: I (string)
 + PaymentId: Payment 1 (string)
++ BuyerOrderIdentifier: XX01 (string)
++ StartPeriod: `2025-07-14T00:00:00Z` (string)
++ EndPeriod: `2025-07-28T00:00:00Z` (string)
++ FreeFormatNote: Notes section (string)
 
 ## InvoiceReadBody (object)
 + InvoiceRecordId: 1 (number)
@@ -462,10 +472,10 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + Name: `Coolblue N.V.` (required, string)
 + VatRegistrationNo: NL823619357Z08 (string)
 + EInvoiceId: 0478493179 (string)
-+ TotalInvoiceAmount: `729.17` (number)
-+ TotalInvoiceLinesExVatAmount: `745.91` (number)
-+ TotalVatAmount: `16.74` (number)
-+ InvoicePayableAmount: `719.27` (number)
++ TotalInvoiceAmount: 729.17 (number)
++ TotalInvoiceLinesExVatAmount: 745.91 (number)
++ TotalVatAmount: 16.74 (number)
++ InvoicePayableAmount: 719.27 (number)
 + IBAN: UKBMGB22 (string)
 + BIC: HBUKGB4B (string)
 + OrderNumber: 'Order 1 (string)
@@ -483,10 +493,10 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + Name: `Coolblue N.V.` (required, string)
 + VatRegistrationNo: NL823619357Z08 (required, string)
 + EInvoiceId: 0478493179 (required, string)
-+ TotalInvoiceAmount: `729.17` (required, number)
-+ TotalInvoiceLinesExVatAmount: `745.91` (required, number)
-+ TotalVatAmount: `16.74` (required, number)
-+ InvoicePayableAmount: `719.27` (required, number)
++ TotalInvoiceAmount: 729.17 (required, number)
++ TotalInvoiceLinesExVatAmount: 745.91 (required, number)
++ TotalVatAmount: 16.74 (required, number)
++ InvoicePayableAmount: 719.27 (required, number)
 + IBAN: UKBMGB22 (required, string)
 + BIC: HBUKGB4B (required, string)
 + OrderNumber: 'Order 1 (string)
@@ -500,12 +510,18 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + WeightCode: MT (string)
 + Value: 22000.00 (number)
 + Price: 50.00 (number)
++ VatRatePercentage: 21 (number)
 + InvoiceLegDescription: SGR 1234 (string)
 + VatRateCode: E (string)
 + RateTypeCode: A (string)
 + PriceTypeCode: PKG (string)
 + PaymentModeCode: I (string)
 + PaymentId: Payment 1 (string)
++ BuyerOrderIdentifier: XX01 (string)
++ StartPeriod: `2025-07-14T00:00:00Z` (string)
++ EndPeriod: `2025-07-28T00:00:00Z` (string)
++ FreeFormatNote: Notes section (string)
+
 
 
 ## InvoiceReadLeg2 (object)
@@ -514,12 +530,18 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + WeightCode: MT (string)
 + Value: 24000.00 (number)
 + Price: 60.00 (number)
++ VatRatePercentage: 21 (number)
 + InvoiceLegDescription: MLS 8523 (string)
 + VatRateCode: E (string)
 + RateTypeCode: A (string)
 + PriceTypeCode: PKG (string)
 + PaymentModeCode: I (string)
 + PaymentId: Payment 1 (string)
++ BuyerOrderIdentifier: XX01 (string)
++ StartPeriod: `2025-07-14T00:00:00Z` (string)
++ EndPeriod: `2025-07-28T00:00:00Z` (string)
++ FreeFormatNote: Notes section (string)
+
 
 ## InvoiceUpdateLeg1Create (object)
 + InvoiceRecordId: 1 (required, number)
@@ -528,12 +550,17 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + WeightCode: MT (required, string)
 + Value: 22000.00 (required, number)
 + Price: 50.00 (required, number)
++ VatRatePercentage: 21 (required, number)
 + InvoiceLegDescription: SGR 1234 (string)
 + VatRateCode: E (string)
 + RateTypeCode: A (string)
 + PriceTypeCode: PKG (string)
 + PaymentModeCode: I (string)
 + PaymentId: Payment 1 (string)
++ BuyerOrderIdentifier: XX01 (string)
++ StartPeriod: `2025-07-14T00:00:00Z` (string)
++ EndPeriod: `2025-07-28T00:00:00Z` (string)
++ FreeFormatNote: Notes section (string)
 
 
 ## InvoiceUpdateLeg2Create (object)
@@ -543,12 +570,18 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + WeightCode: MT (required, string)
 + Value: 24000.00 (required, number)
 + Price: 60.00 (required, number)
++ VatRatePercentage: 21 (required, number)
 + InvoiceLegDescription: MLS 8523 (string)
 + VatRateCode: E (string)
 + RateTypeCode: A (string)
 + PriceTypeCode: PKG (string)
 + PaymentModeCode: I (string)
 + PaymentId: Payment 1 (string)
++ BuyerOrderIdentifier: XX01 (string)
++ StartPeriod: `2025-07-14T00:00:00Z` (string)
++ EndPeriod: `2025-07-28T00:00:00Z` (string)
++ FreeFormatNote: Notes section (string)
+
 
 ## Pagination (object)
 + Total: 547 (number) - total number of records available
