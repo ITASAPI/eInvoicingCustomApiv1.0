@@ -119,6 +119,8 @@ Model Header containing AccessToken
 |IBAN|IBAN|`string`|255||Required|
 |BIC|BIC|`string`|255||Required|
 |OrderNumber|Order Number|`string`|255|||
+|TaxScheme|Tax Scheme|`string`|5|||
+|SchemeId|Scheme Id|`string`|5|||
 |InvoiceLegs|see <b><a href="/#reference/data-object-definitions/invoice-leg/invoice-leg-for-create">Invoice Legs</a></b> object|[array] of `object`|||Required|
 
 <hr />
@@ -176,6 +178,8 @@ Model Header containing AccessToken
 |BIC|BIC|`string`|255||Required|
 |OrderNumber|Order Number|`string`|255|||
 |IsProcessed|Is Processed|`boolean`||||
+|TaxScheme|Tax Scheme|`string`|5|||
+|SchemeId|Scheme Id|`string`|5|||
 |InvoiceLegs|see <b><a href="/#reference/data-object-definitions/invoice-leg/invoice-leg">Invoice Legs</a></b> object|[array] of `object`|||Required|
 
 <hr />
@@ -407,7 +411,18 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + CurrencyCode: EUR (required, string)
 + DocumentDate: `2025-07-14T00:00:00Z` (required, string)
 + ValueDate: `2025-08-14T00:00:00Z` (required, string)
-+ OrderNumber: 'Order 1 (string)
++ Name: `Coolblue N.V.` (required, string)
++ VatRegistrationNo: NL823619357Z08 (required, string)
++ EInvoiceId: 0478493179 (required, string)
++ TotalInvoiceAmount: `729.17` (required, number)
++ TotalInvoiceLinesExVatAmount: `745.91` (required, number)
++ TotalVatAmount: `16.74` (required, number)
++ InvoicePayableAmount: `719.27` (required, number)
++ IBAN: UKBMGB22 (required, string)
++ BIC: HBUKGB4B (required, string)
++ OrderNumber: Order 1 (string)
++ TaxScheme: VAT (string)
++ SchemeId: `9944` (string)
 + InvoiceLegs (required, array [InvoiceLeg1Create, InvoiceLeg2Create])
 
 ## InvoiceIdResponse (object)
@@ -444,9 +459,18 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + CurrencyCode: EUR (string)
 + DocumentDate: `2025-07-14T00:00:00Z` (string)
 + ValueDate: `2025-08-14T00:00:00Z` (string)
++ Name: `Coolblue N.V.` (required, string)
++ VatRegistrationNo: NL823619357Z08 (string)
++ EInvoiceId: 0478493179 (string)
++ TotalInvoiceAmount: `729.17` (number)
++ TotalInvoiceLinesExVatAmount: `745.91` (number)
++ TotalVatAmount: `16.74` (number)
++ InvoicePayableAmount: `719.27` (number)
 + IBAN: UKBMGB22 (string)
 + BIC: HBUKGB4B (string)
 + OrderNumber: 'Order 1 (string)
++ TaxScheme: VAT (string)
++ SchemeId: `9944` (string)
 + InvoiceLegs (required, array [InvoiceReadLeg1, InvoiceReadLeg2])
 
 ## InvoiceUpdateBody (object)
@@ -456,9 +480,18 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + CurrencyCode: EUR (required, string)
 + DocumentDate: `2025-07-14T00:00:00Z` (required, string)
 + ValueDate: `2025-08-14T00:00:00Z` (required, string)
++ Name: `Coolblue N.V.` (required, string)
++ VatRegistrationNo: NL823619357Z08 (required, string)
++ EInvoiceId: 0478493179 (required, string)
++ TotalInvoiceAmount: `729.17` (required, number)
++ TotalInvoiceLinesExVatAmount: `745.91` (required, number)
++ TotalVatAmount: `16.74` (required, number)
++ InvoicePayableAmount: `719.27` (required, number)
 + IBAN: UKBMGB22 (required, string)
 + BIC: HBUKGB4B (required, string)
 + OrderNumber: 'Order 1 (string)
++ TaxScheme: VAT (string)
++ SchemeId: `9944` (string)
 + InvoiceLegs (required, array [InvoiceUpdateLeg1Create, InvoiceUpdateLeg2Create])
 
 ## InvoiceReadLeg1 (object)
