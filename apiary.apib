@@ -478,7 +478,8 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + InvoicePayableAmount: 719.27 (number)
 + IBAN: UKBMGB22 (string)
 + BIC: HBUKGB4B (string)
-+ OrderNumber: 'Order 1 (string)
++ OrderNumber: Order 1 (string)
++ IsProcessed: false (boolean)
 + TaxScheme: VAT (string)
 + SchemeId: `9944` (string)
 + InvoiceLegs (required, array [InvoiceReadLeg1, InvoiceReadLeg2])
@@ -505,7 +506,8 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + InvoiceLegs (required, array [InvoiceUpdateLeg1Create, InvoiceUpdateLeg2Create])
 
 ## InvoiceReadLeg1 (object)
-+ InvoiceLegId: 1 (number)
++ InvoiceRecordId: 1 (number)
++ InvoiceRecordLegId: 1 (number)
 + Quantity: 440.00 (number)
 + WeightCode: MT (string)
 + Value: 22000.00 (number)
@@ -525,7 +527,8 @@ A multipurpose object which can be used by several endpoints and with multiple s
 
 
 ## InvoiceReadLeg2 (object)
-+ InvoiceLegId: 2 (number)
++ InvoiceRecordId: 1 (number)
++ InvoiceRecordLegId: 2 (number)
 + Quantity: 400.00 (number)
 + WeightCode: MT (string)
 + Value: 24000.00 (number)
@@ -545,7 +548,7 @@ A multipurpose object which can be used by several endpoints and with multiple s
 
 ## InvoiceUpdateLeg1Create (object)
 + InvoiceRecordId: 1 (required, number)
-+ InvoiceLegId: 1 (required, number)
++ InvoiceRecordLegId: 1 (required, number)
 + Quantity: 440.00 (required, number)
 + WeightCode: MT (required, string)
 + Value: 22000.00 (required, number)
@@ -565,7 +568,7 @@ A multipurpose object which can be used by several endpoints and with multiple s
 
 ## InvoiceUpdateLeg2Create (object)
 + InvoiceRecordId: 1 (required, number)
-+ InvoiceLegId: 2 (required, number)
++ InvoiceRecordLegId: 2 (required, number)
 + Quantity: 400.00 (required, number)
 + WeightCode: MT (required, string)
 + Value: 24000.00 (required, number)
