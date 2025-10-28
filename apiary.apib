@@ -39,21 +39,32 @@ Model Header containing AccessToken
 
 # Group Invoices
 
-## Incoming Invoice List [/Invoices/{TradingEntityId}/IncomingInvoice/{Property}/{PropertyValue}]
+## Incoming Invoice Record List [/Invoices/{TradingEntityId}/IncomingInvoice/{Property}/{PropertyValue}]
 `GET` Incoming Invoices.
 
-### List Incoming Invoices [GET]
+### List Incoming Invoice Records [GET]
 
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
-|InvoiceId|Invoice Id|`number`||||
+|InvoiceRecordId|Invoice Record Id|`number`||||
 |AccountCode|Account Code|`string`|10|||
 |ClientReference|Client Reference|`string`|255|||
 |CurrencyCode|Currency Code|`string`|3|||
 |DocumentDate|Document Date|`datetime`||||
 |ValueDate|Value Date|`datetime`||||
+|Name|Name|`string`|40|||
+|VatRegistrationNo|Vat Registration Number|`string`|20|||
+|EInvoiceId|e Invoice Id|`string`|50|||
+|TotalInvoiceAmount|Total Invoice Amount|`number`||||
+|TotalInvoiceLinesExVatAmount|Total Invoice Lines Excluding Vat Amount|`number`||||
+|TotalVatAmount|Total Vat Amount|`number`||||
+|InvoicePayableAmount|Invoice Payable Amount|`number`||||
+|IBAN|IBAN|`string`|255|||
+|BIC|BIC|`string`|255|||
 |OrderNumber|Order Number|`string`|255|||
 |IsProcessed|Is Processed|`boolean`||||
+|TaxScheme|Tax Scheme|`string`|5|||
+|SchemeId|Scheme Id|`string`|5|||
 |InvoiceLegs|see <b><a href="/#reference/data-object-definitions/invoice-leg/invoice-leg">Invoice Legs</a></b> object|[array] of `object`||||
 
 
@@ -67,7 +78,7 @@ Model Header containing AccessToken
             + AccountCode
             + ClientReference
             + DocumentDate
-            + InvoiceId
+            + InvoiceRecordId
             + IsProcessed
     + PropertyValue (optional, string, `ABCDEF.P`) 
 
@@ -86,9 +97,9 @@ Model Header containing AccessToken
 + Response 405 (application/json; charset=utf-8)
     + Attributes (405 Response)
 
-## Incoming Invoice Create [/Invoices/{TradingEntityId}/IncomingInvoice]
+## Incoming Invoice Record Create [/Invoices/{TradingEntityId}/IncomingInvoice]
 
-### Create Incoming Invoice [POST]
+### Create Incoming Invoice Record [POST]
 `POST` Create Incoming Invoice Record in the Staging Table. * <a href="/#introduction/disclaimer"> (Disclaimer)</a>
 
 |Property|Description|Type|Max Length|Notes|Constraint|
@@ -98,6 +109,15 @@ Model Header containing AccessToken
 |CurrencyCode|Currency Code|`string`|3||Required|
 |DocumentDate|Document Date|`datetime`|||Required|
 |ValueDate|Value Date|`datetime`|||Required|
+|Name|Name|`string`|40||Required|
+|VatRegistrationNo|Vat Registration Number|`string`|20||Required|
+|EInvoiceId|e Invoice Id|`string`|50||Required|
+|TotalInvoiceAmount|Total Invoice Amount|`number`|||Required|
+|TotalInvoiceLinesExVatAmount|Total Invoice Lines Excluding Vat Amount|`number`|||Required|
+|TotalVatAmount|Total Vat Amount|`number`|||Required|
+|InvoicePayableAmount|Invoice Payable Amount|`number`|||Required|
+|IBAN|IBAN|`string`|255||Required|
+|BIC|BIC|`string`|255||Required|
 |OrderNumber|Order Number|`string`|255|||
 |InvoiceLegs|see <b><a href="/#reference/data-object-definitions/invoice-leg/invoice-leg-for-create">Invoice Legs</a></b> object|[array] of `object`|||Required|
 
@@ -106,7 +126,7 @@ Model Header containing AccessToken
 <b>Response Data</b>
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
-|InvoiceId|Invoice Id|`number`||||
+|InvoiceRecordId|Invoice Record Id|`number`||||
 
 + Parameters
     + TradingEntityId (required, string, `JT`) ... Identify specific trading entity. 
@@ -132,19 +152,28 @@ Model Header containing AccessToken
 + Response 405 (application/json; charset=utf-8)
     + Attributes (405 Response)
 
-## Incoming Invoice Update & Delete [/Invoices/{TradingEntityId}/IncomingInvoice/{InvoiceId}]
+## Incoming Invoice Record Update & Delete [/Invoices/{TradingEntityId}/IncomingInvoice/{InvoiceRecordId}]
 
-### Update Incoming Invoice [PUT]
+### Update Incoming Invoice Record [PUT]
 `PUT` Update Incoming Invoice Record in the Staging Table. * <a href="/#introduction/disclaimer"> (Disclaimer)</a>
 
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
-|InvoiceId|Invoice Id|`number`|||Required|
+|InvoiceRecordId|Invoice Record Id|`number`|||Required|
 |AccountCode|Account Code|`string`|10||Required|
 |ClientReference|Client Reference|`string`|255||Required|
 |CurrencyCode|Currency Code|`string`|3||Required|
 |DocumentDate|Document Date|`datetime`|||Required|
 |ValueDate|Value Date|`datetime`|||Required|
+|Name|Name|`string`|40||Required|
+|VatRegistrationNo|Vat Registration Number|`string`|20||Required|
+|EInvoiceId|e Invoice Id|`string`|50||Required|
+|TotalInvoiceAmount|Total Invoice Amount|`number`|||Required|
+|TotalInvoiceLinesExVatAmount|Total Invoice Lines Excluding Vat Amount|`number`|||Required|
+|TotalVatAmount|Total Vat Amount|`number`|||Required|
+|InvoicePayableAmount|Invoice Payable Amount|`number`|||Required|
+|IBAN|IBAN|`string`|255||Required|
+|BIC|BIC|`string`|255||Required|
 |OrderNumber|Order Number|`string`|255|||
 |IsProcessed|Is Processed|`boolean`||||
 |InvoiceLegs|see <b><a href="/#reference/data-object-definitions/invoice-leg/invoice-leg">Invoice Legs</a></b> object|[array] of `object`|||Required|
@@ -154,11 +183,11 @@ Model Header containing AccessToken
 <b>Response Data</b>
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
-|InvoiceId|Invoice Id|`number`||||
+|InvoiceRecordId|Invoice Record Id|`number`||||
 
 + Parameters
     + TradingEntityId (required, string, `JT`) ... Identify specific trading entity.
-    + InvoiceId (required, number, `1`) ... Identity specific invoice record
+    + InvoiceRecordId (required, number, `1`) ... Identity specific invoice record
 
 + Request (application/json)
     + Header
@@ -170,7 +199,7 @@ Model Header containing AccessToken
 + Response 200 (application/json; charset=utf-8)
     + Attributes 
         + Data
-            + InvoiceId: 1 (number)
+            + InvoiceRecordId: 1 (number)
         + Response (200 UpdateResponse)
     
 + Response 400 (application/json; charset=utf-8)
@@ -188,7 +217,7 @@ Model Header containing AccessToken
 
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
-|InvoiceId|Invoice Id|`number`|||Required|
+|InvoiceRecordId|Invoice Record Id|`number`|||Required|
 
 <strong>Body Parameters</strong>
 <br />
@@ -208,12 +237,12 @@ None.
 
 + Parameters
     + TradingEntityId (required, string, `JT`) ... Identify specific trading entity.
-    + InvoiceId (required, number, `1`) ... Identity specific invoice record
+    + InvoiceRecordId (required, number, `1`) ... Identity specific invoice record
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes 
         + Data
-            + InvoiceId: 1 (number)
+            + InvoiceRecordId: 1 (number)
         + Response (200 DeletedResponse)
     
 + Response 400 (application/json; charset=utf-8)
@@ -241,14 +270,17 @@ A multipurpose object which can be used by several endpoints and with multiple s
 |WeightCode|Weight Code|`string`|4||Required|
 |Value|Value|`number`|||Required|
 |Price|Price|`number`|||Required|
+|VatRatePercentage|Vat Rate Percentage|`number`|||Required|
 |InvoiceLegDescription|Invoice Leg Description|`string`|255|||
 |VatRateCode|Vat Rate Code|`string`|2|||
 |RateTypeCode|Rate Type Code|`string`|1||`A`=Amount, `R`=Rate, `S`=SplitAmount, `W`=WeightRate, `%`=Percent, `Q`=DailyPercent, `C`=PerContainer, `L`=PerRailcar, ` `=None|
 |PriceTypeCode|Price Type Code|`string`|1|||
 |PaymentModeCode|Payment Mode Code|`string`|1|||
 |PaymentId|Payment Id|`string`|255|||
-|IBAN|IBAN|`string`|255|||
-|BIC|BIC|`string`|255|||
+|BuyerOrderIdentifier|Buyer Order Identifier|`string`|50|||
+|StartPeriod|Start Period|`datetime`||||
+|EndPeriod|End Period|`datetime`||||
+|FreeFormatNote|Free Format Note|`string`|255|||
 
 
 <br /><br />
@@ -256,20 +288,23 @@ A multipurpose object which can be used by several endpoints and with multiple s
 
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
-|InvoiceId|Invoice Id|`number`|||Required|
-|InvoiceLegId|Invoice Leg Id|`number`||||
+|InvoiceRecordId|Invoice Record Id|`number`|||Required|
+|InvoiceRecordLegId|Invoice Record Leg Id|`number`||||
 |Quantity|Quantity|`number`|||Required|
 |WeightCode|Weight Code|`string`|4||Required|
 |Value|Value|`number`|||Required|
 |Price|Price|`number`|||Required|
+|VatRatePercentage|Vat Rate Percentage|`number`|||Required|
 |InvoiceLegDescription|Invoice Leg Description|`string`|255|||
 |VatRateCode|Vat Rate Code|`string`|2|||
 |RateTypeCode|Rate Type Code|`string`|1||`A`=Amount, `R`=Rate, `S`=SplitAmount, `W`=WeightRate, `%`=Percent, `Q`=DailyPercent, `C`=PerContainer, `L`=PerRailcar, ` `=None|
 |PriceTypeCode|Price Type Code|`string`|1|||
 |PaymentModeCode|Payment Mode Code|`string`|1|||
 |PaymentId|Payment Id|`string`|255|||
-|IBAN|IBAN|`string`|255|||
-|BIC|BIC|`string`|255|||
+|BuyerOrderIdentifier|Buyer Order Identifier|`string`|50|||
+|StartPeriod|Start Period|`datetime`||||
+|EndPeriod|End Period|`datetime`||||
+|FreeFormatNote|Free Format Note|`string`|255|||
 
 + Response 200 (application/json; charset=utf-8)
 + Attributes (InvoiceUpdateLeg1Create)
@@ -376,7 +411,7 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + InvoiceLegs (required, array [InvoiceLeg1Create, InvoiceLeg2Create])
 
 ## InvoiceIdResponse (object)
-+ InvoiceId: 1 (number)
++ InvoiceRecordId: 1 (number)
 
 ## InvoiceLeg1Create (object)
 + Quantity: 440.00 (required, number)
@@ -389,8 +424,6 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + PriceTypeCode: PKG (string)
 + PaymentModeCode: I (string)
 + PaymentId: Payment 1 (string)
-+ IBAN: UKBMGB22 (string)
-+ BIC: HBUKGB4B (string)
 
 ## InvoiceLeg2Create (object)
 + Quantity: 200.00 (required, number)
@@ -403,26 +436,28 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + PriceTypeCode: PKG (string)
 + PaymentModeCode: I (string)
 + PaymentId: Payment 1 (string)
-+ IBAN: UKBMGB22 (string)
-+ BIC: HBUKGB4B (string)
 
 ## InvoiceReadBody (object)
-+ InvoiceId: 1 (number)
++ InvoiceRecordId: 1 (number)
 + AccountCode: `ABCDEFG.P` (string)
 + ClientReference: '5879101647' (string)
 + CurrencyCode: EUR (string)
 + DocumentDate: `2025-07-14T00:00:00Z` (string)
 + ValueDate: `2025-08-14T00:00:00Z` (string)
++ IBAN: UKBMGB22 (string)
++ BIC: HBUKGB4B (string)
 + OrderNumber: 'Order 1 (string)
 + InvoiceLegs (required, array [InvoiceReadLeg1, InvoiceReadLeg2])
 
 ## InvoiceUpdateBody (object)
-+ InvoiceId: 1 (required, number)
++ InvoiceRecordId: 1 (required, number)
 + AccountCode: `ABCDEFG.P` (required, string)
 + ClientReference: '5879101647' (required, string)
 + CurrencyCode: EUR (required, string)
 + DocumentDate: `2025-07-14T00:00:00Z` (required, string)
 + ValueDate: `2025-08-14T00:00:00Z` (required, string)
++ IBAN: UKBMGB22 (required, string)
++ BIC: HBUKGB4B (required, string)
 + OrderNumber: 'Order 1 (string)
 + InvoiceLegs (required, array [InvoiceUpdateLeg1Create, InvoiceUpdateLeg2Create])
 
@@ -438,8 +473,6 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + PriceTypeCode: PKG (string)
 + PaymentModeCode: I (string)
 + PaymentId: Payment 1 (string)
-+ IBAN: UKBMGB22 (string)
-+ BIC: HBUKGB4B (string)
 
 
 ## InvoiceReadLeg2 (object)
@@ -454,11 +487,9 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + PriceTypeCode: PKG (string)
 + PaymentModeCode: I (string)
 + PaymentId: Payment 1 (string)
-+ IBAN: UKBMGB22 (string)
-+ BIC: HBUKGB4B (string)
 
 ## InvoiceUpdateLeg1Create (object)
-+ InvoiceId: 1 (required, number)
++ InvoiceRecordId: 1 (required, number)
 + InvoiceLegId: 1 (required, number)
 + Quantity: 440.00 (required, number)
 + WeightCode: MT (required, string)
@@ -470,12 +501,10 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + PriceTypeCode: PKG (string)
 + PaymentModeCode: I (string)
 + PaymentId: Payment 1 (string)
-+ IBAN: UKBMGB22 (string)
-+ BIC: HBUKGB4B (string)
 
 
 ## InvoiceUpdateLeg2Create (object)
-+ InvoiceId: 1 (required, number)
++ InvoiceRecordId: 1 (required, number)
 + InvoiceLegId: 2 (required, number)
 + Quantity: 400.00 (required, number)
 + WeightCode: MT (required, string)
@@ -487,8 +516,6 @@ A multipurpose object which can be used by several endpoints and with multiple s
 + PriceTypeCode: PKG (string)
 + PaymentModeCode: I (string)
 + PaymentId: Payment 1 (string)
-+ IBAN: UKBMGB22 (string)
-+ BIC: HBUKGB4B (string)
 
 ## Pagination (object)
 + Total: 547 (number) - total number of records available
